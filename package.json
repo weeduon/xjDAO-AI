@@ -1,0 +1,41 @@
+{
+  "name": "xjdao-ai",
+  "version": "0.1.0",
+  "private": false,
+  "description": "xjDAO AI - multi-model AI assistant with cross verification.",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:client": "vite --host 0.0.0.0",
+    "dev:server": "node --watch server/index.js",
+    "build": "vite build",
+    "start": "NODE_ENV=production node server/index.js"
+  },
+  "keywords": [
+    "ai",
+    "assistant",
+    "multi-model",
+    "cross-verification",
+    "chatgpt",
+    "deepseek",
+    "gemini",
+    "grok"
+  ],
+  "author": "weeduon",
+  "license": "MIT",
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "cors": "latest",
+    "dotenv": "latest",
+    "express": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "vite": "latest"
+  },
+  "devDependencies": {
+    "concurrently": "latest"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
