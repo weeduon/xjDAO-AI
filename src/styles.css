@@ -1,0 +1,396 @@
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color-scheme: dark;
+  --bg: #0b1020;
+  --panel: #11172a;
+  --panel-soft: #172033;
+  --text: #edf2ff;
+  --muted: #8e9ab6;
+  --border: rgba(255, 255, 255, 0.08);
+  --accent: #7c5cff;
+  --accent-2: #12d6df;
+  --danger: #ff6170;
+  --shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f4f6fb;
+  --panel: #ffffff;
+  --panel-soft: #edf1f8;
+  --text: #101522;
+  --muted: #667085;
+  --border: rgba(16, 21, 34, 0.1);
+  --accent: #5b43f1;
+  --accent-2: #069aa3;
+  --shadow: 0 20px 50px rgba(16, 21, 34, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background:
+    radial-gradient(circle at 20% 10%, rgba(124, 92, 255, 0.18), transparent 28%),
+    radial-gradient(circle at 90% 20%, rgba(18, 214, 223, 0.14), transparent 24%),
+    var(--bg);
+  color: var(--text);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.appShell {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  height: 100%;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  border-right: 1px solid var(--border);
+  background: rgba(9, 14, 29, 0.8);
+  padding: 18px;
+  backdrop-filter: blur(18px);
+}
+
+:root[data-theme="light"] .sidebar {
+  background: rgba(255, 255, 255, 0.76);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: white;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.brand strong,
+.brand span {
+  display: block;
+}
+
+.brand span {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.newChat,
+.sideActions button,
+.conversationList button,
+.composer button {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  color: var(--text);
+  background: var(--panel-soft);
+  padding: 12px 14px;
+}
+
+.newChat {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: white;
+  border: none;
+  font-weight: 700;
+}
+
+.conversationList {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 8px;
+  overflow: auto;
+}
+
+.conversationList button {
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.conversationList button.active {
+  border-color: rgba(124, 92, 255, 0.6);
+  background: rgba(124, 92, 255, 0.16);
+}
+
+.sideActions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.mainPanel {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  height: 100%;
+}
+
+.topbar,
+.settingsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--border);
+  padding: 18px 24px;
+}
+
+.topbar h1,
+.settingsHeader h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.topbar p,
+.settingsHeader p {
+  margin: 6px 0 0;
+  color: var(--muted);
+}
+
+.topbar select {
+  min-width: 150px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--panel);
+  color: var(--text);
+  padding: 10px 12px;
+}
+
+.chatArea {
+  flex: 1;
+  overflow: auto;
+  padding: 28px max(24px, 9vw);
+}
+
+.message {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.message.user {
+  max-width: 940px;
+  margin-left: auto;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--panel-soft);
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.bubble {
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: rgba(17, 23, 42, 0.78);
+  box-shadow: var(--shadow);
+  padding: 18px 20px;
+  line-height: 1.68;
+}
+
+:root[data-theme="light"] .bubble {
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.message.user .bubble {
+  background: rgba(124, 92, 255, 0.16);
+}
+
+.bubble p {
+  margin: 0 0 10px;
+  white-space: pre-wrap;
+}
+
+.bubble h2 {
+  margin: 0 0 12px;
+  font-size: 21px;
+}
+
+.bubble h3 {
+  margin: 18px 0 8px;
+  font-size: 16px;
+  color: var(--accent-2);
+}
+
+.bubble .bullet {
+  color: var(--muted);
+}
+
+.bubble hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 18px 0;
+}
+
+.composer {
+  display: grid;
+  grid-template-columns: 1fr 110px;
+  gap: 12px;
+  border-top: 1px solid var(--border);
+  padding: 16px max(24px, 9vw) 20px;
+}
+
+.composer textarea {
+  min-height: 58px;
+  max-height: 180px;
+  resize: vertical;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  outline: none;
+  background: var(--panel);
+  color: var(--text);
+  padding: 16px 18px;
+}
+
+.composer button {
+  border: none;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: white;
+  font-weight: 800;
+}
+
+.composer button:disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.7);
+  opacity: 0.6;
+}
+
+.settingsPanel {
+  overflow: auto;
+}
+
+.settingsHeader {
+  align-items: flex-start;
+}
+
+.providerGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  padding: 24px;
+}
+
+.providerCard {
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  background: rgba(17, 23, 42, 0.78);
+  box-shadow: var(--shadow);
+  padding: 18px;
+}
+
+:root[data-theme="light"] .providerCard {
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.providerTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.providerTitle h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.providerCard label {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.providerCard input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  outline: none;
+  background: var(--panel);
+  color: var(--text);
+  padding: 12px;
+}
+
+.switch {
+  display: flex !important;
+  grid-template-columns: auto auto;
+  align-items: center;
+  gap: 8px !important;
+  margin: 0 !important;
+}
+
+.switch input {
+  width: auto;
+}
+
+@media (max-width: 920px) {
+  .appShell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .conversationList {
+    grid-column: 1 / -1;
+    max-height: 120px;
+  }
+
+  .sideActions {
+    grid-template-columns: auto auto;
+  }
+
+  .providerGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .composer {
+    grid-template-columns: 1fr;
+  }
+}
